@@ -3,6 +3,7 @@ var table = document.getElementById(tableName);
 var dates = [new Date(2012,01,01), new Date(2012,01,02), new Date(2012,01,03)];
 var postes = ["Poste 1", "Poste 2", "Poste 3"];
 var eleves = [["a","c","b"],["b","a","c"],["c","b","a"]];
+var elevesList = ["a","b","c"];
 
 function createTable(){
 	createDatesHeader();
@@ -34,7 +35,7 @@ function createContent(){
 }
 
 function getJsonOutput(){
-	return JSON.stringify(new Array(dates,postes,eleves));
+	return JSON.stringify(new Array(dates,postes,elevesList,eleves));
 }
 
 function save(){
@@ -60,6 +61,7 @@ function save(){
 		}, false);
 	})();
 }
+
 
 
 
