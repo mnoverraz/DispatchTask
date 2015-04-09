@@ -110,20 +110,20 @@ function handleFileSelect(evt) {
 
 }
 
-
-
-
-
-
-
-
-
-
-
 function handleDragOver(evt) {
 	evt.stopPropagation();
 	evt.preventDefault();
 	evt.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
+}
+
+function nbOccurance(row, val){
+	var occ = 0;
+	for (var i = 1; i <= row.length-1; i++) {
+		if(row[i].innerHTML == val){
+			occ++;
+		}
+	};
+	return occ;
 }
 
 
@@ -131,9 +131,5 @@ function handleDragOver(evt) {
 var dropZone = document.getElementById('drop_zone');
 dropZone.addEventListener('dragover', handleDragOver, false);
 dropZone.addEventListener('drop', handleFileSelect, false);
-
-
-
-
 
 createTable();
