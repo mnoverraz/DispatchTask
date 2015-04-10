@@ -1,3 +1,0 @@
-[submodule "js/prototype"]
-	path = js/prototype
-	url = git://github.com/sstephenson/prototype.git

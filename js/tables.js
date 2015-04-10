@@ -35,22 +35,22 @@ function createContent(){
 }
 
 function getJsonOutput(){
-	return JSON.stringify(new Array(dates,postes,elevesList,eleves));
+	return JSON.stringify(new Array(dates,postes,elevesList,eleves, new Person("Mathieu","Noverraz")));
 }
 
 function save(){
 	(function () {
 		var textFile = null;
 		var makeTextFile = function (text) {
-		var data = new Blob([text], {type: 'application/json'});
+			var data = new Blob([text], {type: 'application/json'});
 
-		if (textFile !== null) {
-		  window.URL.revokeObjectURL(textFile);
-		}
+			if (textFile !== null) {
+			  window.URL.revokeObjectURL(textFile);
+			}
 
-		textFile = window.URL.createObjectURL(data);
+			textFile = window.URL.createObjectURL(data);
 
-		return textFile;
+			return textFile;
 		};
 
 
@@ -125,6 +125,8 @@ function nbOccurance(row, val){
 	};
 	return occ;
 }
+
+
 
 
 // Setup the dnd listeners.
