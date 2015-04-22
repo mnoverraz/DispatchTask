@@ -5,6 +5,7 @@ var Cours = Class.create({
 		this.taskList = new Array();
 		this.scheduleList = new Array();
 		this.classe = null;
+		this.listTab = new Array();
 	},
 	addTask: function(t){
 		if(t instanceof Task){
@@ -12,14 +13,10 @@ var Cours = Class.create({
 		}
 	},
 	addClasse: function(c){
-		if(c instanceof Classe){
-			this.classe = c;
-		}
+		this.classe = c;
 	},
 	addSchedule: function(s){
-		if(s instanceof Schedule){
-			this.scheduleList.push(s);
-		}
+		this.scheduleList.push(s);
 	},
 	toString: function() {
 		return this.name;

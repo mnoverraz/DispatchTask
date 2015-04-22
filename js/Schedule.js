@@ -1,17 +1,19 @@
 var Schedule = Class.create({
 	initialize: function(begin, end) {
-		if(this.checkSameDay(begin,end)){
+		if(begin.toDateString() === end.toDateString()){
 			this.begin = begin;
 			this.end = end;
-			this.uniqid = uniqid("person",true);
+			this.dateOptions = { weekday: 'long', year: '2-digit', month: '2-digit', day: '2-digit', hour12: false };
+			this.dateTimeFormat = new Intl.DateTimeFormat('fr-CH', this.dateOptions);
+			this.uniqid = uniqid("schedule",true);
 		}else{
-			alert("not same day error");
+			console.log("not same day error");
 		}
 	},
-	checkSameDay: function(begin, end){
-		return begin.toDateString() === end.toDateString();
+	getDate: function(){
+		return this.dateTimeFormat.format(this.begin);
 	},
 	toString: function() {
-		return this.firstname+" "+this.lastname;
+		return "To Do";
 	}
 });
