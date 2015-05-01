@@ -13,7 +13,10 @@ var Schedule = Class.create({
 	getDate: function(){
 		return this.dateTimeFormat.format(this.begin);
 	},
+	equals: function(obj){
+		return this.uniqid == obj.uniqid;
+	},
 	toString: function() {
-		return "To Do";
+		return this.getDate();
 	}
 });
