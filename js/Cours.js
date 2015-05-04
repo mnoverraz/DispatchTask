@@ -18,6 +18,19 @@ var Cours = Class.create({
 	addSchedule: function(s){
 		this.scheduleList.push(s);
 	},
+	getPersonByTaskSchedule: function(t,s){
+		if(this.listTab == null || this.listTab.length == 0) { return null; }
+		var find = false;
+
+		for (var i = 0; i < this.listTab.length; i++) {
+			if(this.listTab[i][0] == t){
+				if( s.equals(this.listTab[i][2]) ){
+					return this.listTab[i][1];
+				}
+			}
+		}
+		return null;
+	},
 	toString: function() {
 		return this.name;
 	}
