@@ -18,5 +18,8 @@ var Schedule = Class.create({
 	},
 	toString: function() {
 		return this.getDate();
+	},
+	stringify: function(){
+		return JSON.stringify(this);
 	}
 });

@@ -3,7 +3,7 @@ var Person = Class.create({
 		this.classType = "person";
 		this.firstname  = firstname;
 		this.lastname = lastname;
-		this.uniqid = uniqid("person",true);
+		this.uniqid = uniqid(this.classType,true);
 	},
 	toString: function() {
 		return this.firstname;
