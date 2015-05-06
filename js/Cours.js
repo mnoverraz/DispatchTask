@@ -1,5 +1,6 @@
 var Cours = Class.create({
 	initialize: function(name) {
+		this.classType = "cours";
 		this.name  = name;
 		this.uniqid = uniqid("cours",true);
 		this.taskList = new Array();
@@ -33,5 +34,8 @@ var Cours = Class.create({
 	},
 	toString: function() {
 		return this.name;
+	},
+	stringify: function(){
+
 	}
 });
