@@ -1,50 +1,57 @@
 function testData(){
-	p1 = new Person("Mathieu","Noverraz");
-	p2 = new Person("Laurie", "Nicolet");
-	p3 = new Person("Opaline", "Op");
 
-	classe = new Classe("SCM1a");
-	classe.addPerson(p1);
-	classe.addPerson(p2);
-	classe.addPerson(p3);
+	db = new db();
 
-	t1 = new Task("Balai");
-	t2 = new Task("Poubelles");
-	t3 = new Task("Lavabos");
-	t4 = new Task("Tabourets");
+	p1=db.addPerson("Mathieu","Noverraz");
+	p2=db.addPerson("Laurie", "Nicolet");
+	p3=db.addPerson("Opaline", "Op");
+
+	db.addClasse("SCM1a");
+
+	db.addCours("AV");
+
+	t1=db.addTask("Balai");
+	t2=db.addTask("Poubelles");
+	t3=db.addTask("Lavabos");
+	t4=db.addTask("Tabourets");
+
+	s1=db.addSchedule(new Date(2015, 00, 25, 10, 00), new Date(2015, 00, 25, 11, 00));
+	s2=db.addSchedule(new Date(2015, 00, 26, 10, 00), new Date(2015, 00, 26, 11, 00));
+	s3=db.addSchedule(new Date(2015, 00, 27, 10, 00), new Date(2015, 00, 27, 11, 00));
+
+	/*
+	db.addTaskWork(db.getTask(1),db.getPersonByName("Mathieu"),db.getSchedule(1));
+	db.addTaskWork(db.getTask(1),db.getPersonByName("Opaline"),db.getSchedule(2));
+	db.addTaskWork(db.getTask(1),db.getPersonByName("Laurie"),db.getSchedule(3));
+
+	db.addTaskWork(db.getTask(2),db.getPersonByName("Laurie"),db.getSchedule(1));
+	db.addTaskWork(db.getTask(2),db.getPersonByName("Mathieu"),db.getSchedule(2));
+	db.addTaskWork(db.getTask(2),db.getPersonByName("Opaline"),db.getSchedule(3));
+
+	db.addTaskWork(db.getTask(3),db.getPersonByName("Opaline"),db.getSchedule(1));
+	db.addTaskWork(db.getTask(3),db.getPersonByName("Laurie"),db.getSchedule(2));
+	db.addTaskWork(db.getTask(3),db.getPersonByName("Mathieu"),db.getSchedule(3));
+
+	db.addTaskWork(db.getTask(4),db.getPersonByName("Mathieu"),db.getSchedule(1));
+	db.addTaskWork(db.getTask(4),db.getPersonByName("Laurie"),db.getSchedule(2));
+	db.addTaskWork(db.getTask(4),db.getPersonByName("Opaline"),db.getSchedule(3));
+	*/
+
 	
-	cours = new Cours("ACM");
+	db.addTaskWork(t1,p1,s1);
+	db.addTaskWork(t1,p3,s2);
+	db.addTaskWork(t1,p2,s3);
+
+	db.addTaskWork(t2,p2,s1);
+	db.addTaskWork(t2,p1,s2);
+	db.addTaskWork(t2,p3,s3);
+
+	db.addTaskWork(t3,p3,s1);
+	db.addTaskWork(t3,p2,s2);
+	db.addTaskWork(t3,p1,s3);
+
+	db.addTaskWork(t4,p1,s1);
+	db.addTaskWork(t4,p3,s2);
+	db.addTaskWork(t4,p2,s3);
 	
-	cours.addTask(t1);
-	cours.addTask(t2);
-	cours.addTask(t3);
-	cours.addTask(t4);
-
-	cours.addClasse(classe);
-
-
-	s1 = new Schedule(new Date(2015, 00, 01, 10, 00), new Date(2015, 00, 01, 11, 00));
-	s2 = new Schedule(new Date(2015, 00, 02, 10, 00), new Date(2015, 00, 02, 11, 00));
-	s3 = new Schedule(new Date(2015, 00, 03, 10, 00), new Date(2015, 00, 03, 11, 00));
-
-	cours.addSchedule(s1);
-	cours.addSchedule(s2);
-	cours.addSchedule(s3);
-
-	cours.listTab.push(new Array(t1,p1,s1));
-	cours.listTab.push(new Array(t1,p3,s2));
-	cours.listTab.push(new Array(t1,p2,s3));
-
-	cours.listTab.push(new Array(t2,p2,s1));
-	cours.listTab.push(new Array(t2,p1,s2));
-	cours.listTab.push(new Array(t2,p3,s3));
-
-	cours.listTab.push(new Array(t3,p3,s1));
-	cours.listTab.push(new Array(t3,p2,s2));
-	cours.listTab.push(new Array(t3,p1,s3));
-
-	cours.listTab.push(new Array(t4,p1,s1));
-	cours.listTab.push(new Array(t4,p2,s2));
-	cours.listTab.push(new Array(t4,p3,s3));
-
 }

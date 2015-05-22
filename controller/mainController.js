@@ -1,29 +1,30 @@
-function createTable(cours){
-  createDatesHeader(cours.scheduleList);
-  createContent(cours.taskList);
+function createTable(){
+  createDatesHeader(db.getScheduleList());
+  createContent(db.getTaskList(), db.getScheduleList());
 }
 
-function createDatesHeader(dateList){
+function createDatesHeader(scheduleList){
   var thead = table.createTHead();
   var row = thead.insertRow(0);
   row.insertCell(0);
-  for (var i = 0; i < dateList.length; i++) {
-    var date = cours.scheduleList[i];
+  for (var i = 0; i < scheduleList.length; i++) {
+    var date = scheduleList[i];
     var cell = row.insertCell(-1);
     cell.innerHTML = date.getDate();
   };
 }
 
-function createContent(taskList){
+function createContent(taskList, scheduleList){
   var tbody = document.getElementById("tbody");
   for (var i = 0; i < taskList.length; i++) {
     task = taskList[i];
     var row = tbody.insertRow(-1);
-    var cell = row.insertCell(-1)
+    var cell = row.insertCell(-1);
     cell.innerHTML = task.name;
-    for (var j = 0; j < dates.length; j++) {
-      var cell = row.insertCell(-1)
-      cell.innerHTML = cours.getPersonByTaskSchedule(taskList[i], dates[j]);
+    for (var j = 0; j < scheduleList.length; j++) {
+      var cell = row.insertCell(-1);
+      var person = db.getPersonByTaskSchedule(task, scheduleList[j]);
+      cell.innerHTML = person;
     }
   };
   

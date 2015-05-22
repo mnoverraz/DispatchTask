@@ -7,7 +7,7 @@ var Schedule = Class.create({
 			this.dateTimeFormat = new Intl.DateTimeFormat('fr-CH', this.dateOptions);
 			this.uniqid = uniqid("schedule",true);
 		}else{
-			console.log("not same day error");
+			alert("not same day error");
 		}
 	},
 	getDate: function(){
