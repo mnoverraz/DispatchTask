@@ -1,5 +1,5 @@
 function getJsonOutput(){
-  return JSON.stringify(cours);
+  return JSON.stringify(testModel);
 }
 
 function save(){
@@ -24,25 +24,4 @@ function save(){
       link.href = makeTextFile(getJsonOutput());
     }, false);
   })();
-}
-
-function handleFileSelect(evt) {
-  console.log('handleFileSelect');
-  evt.stopPropagation();
-  evt.preventDefault();
-
-  files = evt.dataTransfer.files; // FileList object.
-  theFile = files[0];
-
-  reader = new FileReader();
-  reader.onload = function(e) {
-    alert(e.target.result);
-  }
-  reader.readAsText(theFile);
-}
-
-function handleDragOver(evt) {
-  evt.stopPropagation();
-  evt.preventDefault();
-  evt.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
 }

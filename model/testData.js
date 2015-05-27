@@ -1,57 +1,57 @@
 function testData(){
 
-	db = new db();
+	testModel = new db();
 
-	p1=db.addPerson("Mathieu","Noverraz");
-	p2=db.addPerson("Laurie", "Nicolet");
-	p3=db.addPerson("Opaline", "Op");
+	p1=testModel.addPerson("Lucien","Martin");
+	p2=testModel.addPerson("Sigfried", "Nicolet");
+	p3=testModel.addPerson("Jérôme", "Helmut");
 
-	db.addClasse("SCM1a");
+	testModel.addClasse("SCM1a");
 
-	db.addCours("AV");
+	testModel.addCours("AV");
 
-	t1=db.addTask("Balai");
-	t2=db.addTask("Poubelles");
-	t3=db.addTask("Lavabos");
-	t4=db.addTask("Tabourets");
+	t1=testModel.addTask("Poussière");
+	t2=testModel.addTask("Aspirateur");
+	t3=testModel.addTask("Cuisine");
+	t4=testModel.addTask("Toilettes");
 
-	s1=db.addSchedule(new Date(2015, 00, 25, 10, 00), new Date(2015, 00, 25, 11, 00));
-	s2=db.addSchedule(new Date(2015, 00, 26, 10, 00), new Date(2015, 00, 26, 11, 00));
-	s3=db.addSchedule(new Date(2015, 00, 27, 10, 00), new Date(2015, 00, 27, 11, 00));
+	s1=testModel.addSchedule(new Date(2015, 05, 10, 10, 00), new Date(2015, 05, 10, 11, 00));
+	s2=testModel.addSchedule(new Date(2015, 05, 17, 10, 00), new Date(2015, 05, 17, 11, 00));
+	s3=testModel.addSchedule(new Date(2015, 05, 24, 10, 00), new Date(2015, 05, 24, 11, 00));
 
 	/*
-	db.addTaskWork(db.getTask(1),db.getPersonByName("Mathieu"),db.getSchedule(1));
-	db.addTaskWork(db.getTask(1),db.getPersonByName("Opaline"),db.getSchedule(2));
-	db.addTaskWork(db.getTask(1),db.getPersonByName("Laurie"),db.getSchedule(3));
+	testModel.addTaskWork(testModel.getTask(1),testModel.getPersonByName("Mathieu"),testModel.getSchedule(1));
+	testModel.addTaskWork(testModel.getTask(1),testModel.getPersonByName("Opaline"),testModel.getSchedule(2));
+	testModel.addTaskWork(testModel.getTask(1),testModel.getPersonByName("Laurie"),testModel.getSchedule(3));
 
-	db.addTaskWork(db.getTask(2),db.getPersonByName("Laurie"),db.getSchedule(1));
-	db.addTaskWork(db.getTask(2),db.getPersonByName("Mathieu"),db.getSchedule(2));
-	db.addTaskWork(db.getTask(2),db.getPersonByName("Opaline"),db.getSchedule(3));
+	testModel.addTaskWork(testModel.getTask(2),testModel.getPersonByName("Laurie"),testModel.getSchedule(1));
+	testModel.addTaskWork(testModel.getTask(2),testModel.getPersonByName("Mathieu"),testModel.getSchedule(2));
+	testModel.addTaskWork(testModel.getTask(2),testModel.getPersonByName("Opaline"),testModel.getSchedule(3));
 
-	db.addTaskWork(db.getTask(3),db.getPersonByName("Opaline"),db.getSchedule(1));
-	db.addTaskWork(db.getTask(3),db.getPersonByName("Laurie"),db.getSchedule(2));
-	db.addTaskWork(db.getTask(3),db.getPersonByName("Mathieu"),db.getSchedule(3));
+	testModel.addTaskWork(testModel.getTask(3),testModel.getPersonByName("Opaline"),testModel.getSchedule(1));
+	testModel.addTaskWork(testModel.getTask(3),testModel.getPersonByName("Laurie"),testModel.getSchedule(2));
+	testModel.addTaskWork(testModel.getTask(3),testModel.getPersonByName("Mathieu"),testModel.getSchedule(3));
 
-	db.addTaskWork(db.getTask(4),db.getPersonByName("Mathieu"),db.getSchedule(1));
-	db.addTaskWork(db.getTask(4),db.getPersonByName("Laurie"),db.getSchedule(2));
-	db.addTaskWork(db.getTask(4),db.getPersonByName("Opaline"),db.getSchedule(3));
+	testModel.addTaskWork(testModel.getTask(4),testModel.getPersonByName("Mathieu"),testModel.getSchedule(1));
+	testModel.addTaskWork(testModel.getTask(4),testModel.getPersonByName("Laurie"),testModel.getSchedule(2));
+	testModel.addTaskWork(testModel.getTask(4),testModel.getPersonByName("Opaline"),testModel.getSchedule(3));
 	*/
 
 	
-	db.addTaskWork(t1,p1,s1);
-	db.addTaskWork(t1,p3,s2);
-	db.addTaskWork(t1,p2,s3);
+	testModel.addTaskWork(t1,p1,s1);
+	testModel.addTaskWork(t1,p3,s2);
+	testModel.addTaskWork(t1,p2,s3);
 
-	db.addTaskWork(t2,p2,s1);
-	db.addTaskWork(t2,p1,s2);
-	db.addTaskWork(t2,p3,s3);
+	testModel.addTaskWork(t2,p2,s1);
+	testModel.addTaskWork(t2,p1,s2);
+	testModel.addTaskWork(t2,p3,s3);
 
-	db.addTaskWork(t3,p3,s1);
-	db.addTaskWork(t3,p2,s2);
-	db.addTaskWork(t3,p1,s3);
+	testModel.addTaskWork(t3,p3,s1);
+	testModel.addTaskWork(t3,p2,s2);
+	testModel.addTaskWork(t3,p1,s3);
 
-	db.addTaskWork(t4,p1,s1);
-	db.addTaskWork(t4,p3,s2);
-	db.addTaskWork(t4,p2,s3);
+	testModel.addTaskWork(t4,p1,s1);
+	testModel.addTaskWork(t4,p3,s2);
+	testModel.addTaskWork(t4,p2,s3);
 	
 }

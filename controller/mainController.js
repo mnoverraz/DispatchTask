@@ -1,6 +1,6 @@
-function createTable(){
-  createDatesHeader(db.getScheduleList());
-  createContent(db.getTaskList(), db.getScheduleList());
+function createTable(model){
+  createDatesHeader(model.getScheduleList());
+  createContent(model);
 }
 
 function createDatesHeader(scheduleList){
@@ -14,20 +14,32 @@ function createDatesHeader(scheduleList){
   };
 }
 
-function createContent(taskList, scheduleList){
-  var tbody = document.getElementById("tbody");
-  for (var i = 0; i < taskList.length; i++) {
-    task = taskList[i];
+function createContent(model){
+  //var tbody = document.getElementById("tbody");
+  table.appendChild(document.createElement("tbody"));
+  var tbody = table.tBodies[0];
+
+  for (var i = 0; i < model.taskList.length; i++) {
+    task = model.taskList[i];
     var row = tbody.insertRow(-1);
     var cell = row.insertCell(-1);
     cell.innerHTML = task.name;
-    for (var j = 0; j < scheduleList.length; j++) {
+    for (var j = 0; j < model.scheduleList.length; j++) {
       var cell = row.insertCell(-1);
-      var person = db.getPersonByTaskSchedule(task, scheduleList[j]);
+      var person = model.getPersonByTaskSchedule(task, model.scheduleList[j]);
       cell.innerHTML = person;
     }
   };
   
+}
+
+function clearTable(){
+  if(table.tHead != null){
+    table.tHead.remove();
+  }
+  if(table.tBodies.length != 0){
+    table.tBodies[0].remove();
+  }
 }
 
 function nbOccurance(row, val){

@@ -1,6 +1,10 @@
 var db = Class.create({
-	initialize: function() {
-		this.uniqid = uniqid("db",true);
+	initialize: function(id) {
+		if(id == null){
+			this.uniqid = uniqid("task",true);
+		}else{
+			this.uniqid = id;
+		}
 		this.taskList = new Array();
 		this.scheduleList = new Array();
 		this.personList = new Array();
@@ -8,8 +12,8 @@ var db = Class.create({
 		this.cours = null;
 		this.workingList = new Array();
 	},
-	addPerson: function(firstname, lastname){
-		var person = new Person(firstname, lastname);
+	addPerson: function(firstname, lastname, id){
+		var person = new Person(firstname, lastname, id);
 		this.personList.push(person);
 		return person;
 	},
@@ -17,21 +21,21 @@ var db = Class.create({
 		this.cours = new Cours(coursName);
 		return this.getCours();
 	},
-	addTask: function(name){
-		var task = new Task(name);
+	addTask: function(name, id){
+		var task = new Task(name, id);
 		this.taskList.push(task);
 		return task;
 	},
 	addTaskWork: function(t,p,s){
 		this.workingList.push(new Array(t,p,s));
 	},
-	addClasse: function(name){
-		var classe = new Classe(name);
+	addClasse: function(name, id){
+		var classe = new Classe(name, id);
 		this.classe = classe;
 		return classe;
 	},
-	addSchedule: function(begin, end){
-		var s = new Schedule(begin,end);
+	addSchedule: function(begin, end, id){
+		var s = new Schedule(begin,end, id);
 		this.scheduleList.push(s);
 		return s;
 	},
@@ -40,6 +44,13 @@ var db = Class.create({
 	},
 	getPerson: function(indice){
 		return this.personList[indice];
+	},
+	getPersonByUniqId: function(uid){
+		for (var i = 0; i < this.personList.length; i++) {
+			if(this.personList[i].uniqid == uid){
+				return this.personList[i];
+			}
+		};
 	},
 	getPersonByName: function(firstname, lastname){
 		for (var i = 0; i < this.personList.length; i++) {
@@ -69,11 +80,25 @@ var db = Class.create({
 	getSchedule: function(indice){
 		return this.scheduleList[indice];
 	},
+	getScheduleByUniqId: function(uid){
+		for (var i = 0; i < this.scheduleList.length; i++) {
+			if(this.scheduleList[i].uniqid == uid){
+				return this.scheduleList[i];
+			}
+		};
+	},
 	getScheduleList: function(){
 		return this.scheduleList;
 	},
 	getTask: function(indice){
 		return this.taskList[indice];
+	},
+	getTaskByUniqId: function(uid){
+		for (var i = 0; i < this.taskList.length; i++) {
+			if(this.taskList[i].uniqid == uid){
+				return this.taskList[i];
+			}
+		};
 	},
 	getTaskList: function(){
 		return this.taskList;

@@ -1,7 +1,11 @@
 var Classe = Class.create({
-	initialize: function(name) {
+	initialize: function(name, id) {
 		this.name  = name;
-		this.uniqid = uniqid("classe",true);
+		if(id == null){
+			this.uniqid = uniqid("classe",true);
+		}else{
+			this.uniqid = id;
+		}
 		this.personList = new Array();
 	},
 	addPerson: function(p){

@@ -1,11 +1,15 @@
 var Schedule = Class.create({
-	initialize: function(begin, end) {
+	initialize: function(begin, end, id) {
 		if(begin.toDateString() === end.toDateString()){
 			this.begin = begin;
 			this.end = end;
 			this.dateOptions = { weekday: 'long', year: '2-digit', month: '2-digit', day: '2-digit', hour12: false };
 			this.dateTimeFormat = new Intl.DateTimeFormat('fr-CH', this.dateOptions);
-			this.uniqid = uniqid("schedule",true);
+			if(id == null){
+				this.uniqid = uniqid("schedule",true);
+			}else{
+				this.uniqid = id;
+			}
 		}else{
 			alert("not same day error");
 		}

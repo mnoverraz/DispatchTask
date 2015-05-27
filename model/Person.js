@@ -1,9 +1,12 @@
 var Person = Class.create({
-	initialize: function(firstname, lastname) {
-		this.classType = "person";
+	initialize: function(firstname, lastname, id) {
 		this.firstname  = firstname;
 		this.lastname = lastname;
-		this.uniqid = uniqid(this.classType,true);
+		if(id == null){
+			this.uniqid = uniqid("person",true);
+		}else{
+			this.uniqid = id;
+		}
 	},
 	toString: function() {
 		return this.firstname;

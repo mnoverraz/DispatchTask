@@ -1,8 +1,12 @@
 var Cours = Class.create({
-	initialize: function(name) {
+	initialize: function(name, id) {
 		this.classType = "cours";
 		this.name  = name;
-		this.uniqid = uniqid("cours",true);
+		if(id == null){
+			this.uniqid = uniqid("task",true);
+		}else{
+			this.uniqid = id;
+		}
 		this.taskList = new Array();
 		this.scheduleList = new Array();
 		this.classe = null;
