@@ -14,7 +14,7 @@ function handleFileSelect(evt) {
 
   reader = new FileReader();
   reader.onload = function(e) {
-    var model = importToDb(e.target.result);
+    model = importToDb(e.target.result);
     clearTable();
     createTable(model);
   }

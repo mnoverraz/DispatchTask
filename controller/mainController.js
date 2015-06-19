@@ -1,6 +1,8 @@
 function createTable(model){
   createDatesHeader(model.getScheduleList());
   createContent(model);
+  dropZone.style.border = "none";
+  dropZone.style.backgroundColor = "transparent";
 }
 
 function createDatesHeader(scheduleList){
@@ -30,7 +32,6 @@ function createContent(model){
       cell.innerHTML = person;
     }
   };
-  
 }
 
 function clearTable(){

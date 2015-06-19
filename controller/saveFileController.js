@@ -1,5 +1,5 @@
 function getJsonOutput(){
-  return JSON.stringify(testModel);
+  return JSON.stringify(model);
 }
 
 function save(){
