@@ -53,6 +53,10 @@ db.prototype.getPerson = function(indice){
 	return this.personList[indice];
 }
 
+db.prototype.getPersons = function(){
+	return this.personList;
+}
+
 db.prototype.getPersonByUniqId = function(uid){
 	for (var i = 0; i < this.personList.length; i++) {
 		if(this.personList[i].uniqid == uid){

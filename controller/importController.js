@@ -5,7 +5,6 @@ function handleDragOver(evt) {
 }
 
 function handleFileSelect(evt) {
-  console.log('handleFileSelect');
   evt.stopPropagation();
   evt.preventDefault();
 
