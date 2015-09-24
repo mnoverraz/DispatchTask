@@ -54,7 +54,7 @@ db.prototype.getPerson = function(indice){
 }
 
 db.prototype.getPersons = function(){
-	return this.personList;
+	return this.personList.slice();
 }
 
 db.prototype.getPersonByUniqId = function(uid){
@@ -105,7 +105,7 @@ db.prototype.getScheduleByUniqId = function(uid){
 }
 
 db.prototype.getScheduleList = function(){
-		return this.scheduleList;
+		return this.scheduleList.slice();
 }
 
 db.prototype.getTask = function(indice){
@@ -121,7 +121,15 @@ db.prototype.getTaskByUniqId = function(uid){
 }
 
 db.prototype.getTaskList = function(){
-	return this.taskList;
+	return this.taskList.slice();
+}
+
+db.prototype.getTasks = function(){
+	return this.taskList.slice();
+}
+
+db.prototype.getWorkingList = function(){
+	return this.workingList.slice();
 }
 
 db.prototype.toString = function() {

@@ -43,15 +43,83 @@ function clearTable(){
   }
 }
 
-function nbOccurance(row, val){
-  var occ = 0;
-  for (var i = 1; i <= row.length-1; i++) {
-    if(row[i].innerHTML == val){
-      occ++;
+/**
+* comment: compute the occurence of task by person
+*
+*/
+function nbOccurance(person, task){
+  var wl = model.getWorkingList();
+  var counter = 0;
+  for (var i = 0; i < wl.length; i++) {
+    var dataSet = wl[i];
+    if(dataSet[1] === person){
+      if(dataSet[0] === task){
+        counter++;
+      }
     }
   };
-  return occ;
+  return counter;
 }
+
+function whoDoneTheLess(task, persons){
+  var occupation = new Array();
+  var ret = new Array();
+  
+  persons.forEach(function(person, index, array){
+    occupation.push(new Array(person, nbOccurance(person,task)));
+  });
+  
+  occupation.sort(function(a,b){
+    if (a[1] > b[1]){return 1;}
+    if (a[1] < b[1]){return -1;}
+    return 0;
+  });
+  
+ 
+  var minValue = occupation[0][1];
+  occupation.forEach(function(elt, index, array){
+    if(elt[1] == minValue){ ret.push(elt[0]);}
+  });
+  
+  return ret;
+}
+
+function dispatchTasks(constraints){
+  var dispatch = new Array();
+  var availablePersons = model.getPersons();
+  var availableTasks = model.getTasks();
+  
+  
+  
+  //Add every valid conditions and erase the person in availablePersons
+  if(typeof contraints !== "undefined"){
+    constraints.forEach(function(constraint, index, array){
+       if(constraint[0] instanceof Task && constraint[1] instanceof Person && constraint[2] instanceof Schedule){
+         dispatch.push(constraint);
+         var indexPerson = availablePersons.indexOf(constraint[1]);
+         var indexTask = availableTasks.indexOf(constraint[0]);
+         availablePersons.splice(indexPerson, 1);
+         availableTasks.splice(indexTask, 1);
+       }
+    });
+  }
+  
+  //Celui qui a fait le moins une tâche doit la faire
+  availableTasks.forEach(function(task, index, array){
+    var eligiblePersons = whoDoneTheLess(task,availablePersons);
+    var designatedPerson = eligiblePersons[Math.floor(Math.random() * eligiblePersons.length)];
+    var indexPerson = availablePersons.indexOf(designatedPerson);
+    
+    dispatch.push(new Array(task, designatedPerson, new Schedule(new Date(), new Date())));
+    availablePersons.splice(indexPerson, 1);
+  });
+  
+  
+  //On donne aléatoirement les tâches
+ 
+  return dispatch;
+}
+
 
 
 function uniqid(prefix, more_entropy) {
