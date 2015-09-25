@@ -12,7 +12,7 @@ function createDatesHeader(scheduleList){
   for (var i = 0; i < scheduleList.length; i++) {
     var date = scheduleList[i];
     var cell = row.insertCell(-1);
-    cell.innerHTML = date.getDate();
+    cell.innerHTML = date.toString();
   };
 }
 
@@ -61,6 +61,32 @@ function nbOccurance(person, task){
   return counter;
 }
 
+function lastPersonForTask(task){
+  var wl = model.getWorkingList();
+  var ret = null;
+  var min = null;
+  var time = Date.now();
+  
+  
+  wl.forEach(function(elt, index, array){
+    if(elt[0] === task){
+      
+      var person = elt[1];
+      var schedule = elt[2]
+      var timeDiff = time - schedule.getDate().getTime();
+      
+      if(ret == null){ ret = person; min = timeDiff;
+      }else{
+        if(timeDiff < min){ min = timeDiff; ret = person;}
+      }
+      
+    }
+  });
+  
+  return ret;
+  
+}x
+
 function whoDoneTheLess(task, persons){
   var occupation = new Array();
   var ret = new Array();
@@ -107,15 +133,18 @@ function dispatchTasks(constraints){
   //Celui qui a fait le moins une tâche doit la faire
   availableTasks.forEach(function(task, index, array){
     var eligiblePersons = whoDoneTheLess(task,availablePersons);
+    var lastPerson = lastPersonForTask(task);
+    var indexEligiblePerson = eligiblePersons.indexOf(lastPerson);
+
+    if(eligiblePersons.length > 1 && indexEligiblePerson != -1){
+       eligiblePersons.splice(indexEligiblePerson, 1);
+    }
     var designatedPerson = eligiblePersons[Math.floor(Math.random() * eligiblePersons.length)];
     var indexPerson = availablePersons.indexOf(designatedPerson);
     
     dispatch.push(new Array(task, designatedPerson, new Schedule(new Date(), new Date())));
     availablePersons.splice(indexPerson, 1);
   });
-  
-  
-  //On donne aléatoirement les tâches
  
   return dispatch;
 }

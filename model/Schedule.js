@@ -15,7 +15,7 @@ function Schedule(begin,end, id){
 }
 
 Schedule.prototype.getDate = function(){
-	return this.dateTimeFormat.format(this.begin);
+	return this.begin;
 }
 
 Schedule.prototype.equals = function(){
@@ -23,7 +23,7 @@ Schedule.prototype.equals = function(){
 }
 
 Schedule.prototype.toString = function(){
-	return this.getDate();
+	return this.dateTimeFormat.format(this.begin);
 }
 
 Schedule.prototype.stringify = function(){
