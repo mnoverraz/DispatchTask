@@ -85,7 +85,7 @@ function lastPersonForTask(task){
   
   return ret;
   
-}x
+}
 
 function whoDoneTheLess(task, persons){
   var occupation = new Array();
