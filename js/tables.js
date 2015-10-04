@@ -1,6 +1,4 @@
 //testData();
-var tableName = "table";
-var table = document.getElementById(tableName);
 
 // Setup the dnd listeners.
 var dropZone = document.getElementById('drop_zone');

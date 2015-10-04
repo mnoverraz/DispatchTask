@@ -1,27 +1,29 @@
-function getJsonOutput(){
-  return JSON.stringify(model);
+function getJsonOutput() {
+    return JSON.stringify(model);
 }
 
-function save(){
-  (function () {
-    var textFile = null;
-    var makeTextFile = function (text) {
-      var data = new Blob([text], {type: 'application/json'});
+function save() {
+    (function() {
+        var textFile = null;
+        var makeTextFile = function(text) {
+            var data = new Blob([text], {
+                type: 'application/json'
+            });
 
-      if (textFile !== null) {
-        window.URL.revokeObjectURL(textFile);
-      }
+            if (textFile !== null) {
+                window.URL.revokeObjectURL(textFile);
+            }
 
-      textFile = window.URL.createObjectURL(data);
+            textFile = window.URL.createObjectURL(data);
 
-      return textFile;
-    };
+            return textFile;
+        };
 
 
-    var create = document.getElementById('saveLink');
-    create.addEventListener('click', function () {
-      var link = document.getElementById('saveLink');
-      link.href = makeTextFile(getJsonOutput());
-    }, false);
-  })();
+        var create = document.getElementById('saveLink');
+        create.addEventListener('click', function() {
+            var link = document.getElementById('saveLink');
+            link.href = makeTextFile(getJsonOutput());
+        }, false);
+    })();
 }
