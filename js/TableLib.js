@@ -13,6 +13,7 @@ function Table(id) {
         y: null
     }
     this.table = this.createTable(this.id);
+    this.hidecols = new Array();
 }
 
 Table.prototype.createTable = function(id) {
@@ -80,9 +81,11 @@ Table.prototype.fillXY = function(x, y, data, func) {
 }
 
 Table.prototype.fillX = function(data) {
-    this.addElement(this.elements.header.lastChild, "th", null);
+    var col = this.addElement(this.elements.header.lastChild, "th", null);
+    col.classList.add("col0");
     data.forEach(function(value, index, array) {
-        this.addElement(this.elements.header.lastChild, "th", value.toString());
+        col = this.addElement(this.elements.header.lastChild, "th", value.toString());
+        col.classList.add("col"+(index+1));
     }, this);
     this.elements.x = data;
 }
@@ -90,7 +93,8 @@ Table.prototype.fillX = function(data) {
 Table.prototype.fillY = function(data) {
     data.forEach(function(value, index, array) {
         var row = this.addRow(this.elements.body);
-        this.addElement(row, "th", value);
+        var col = this.addElement(row, "th", value);
+        col.classList.add("col0");
     }, this);
     this.elements.y = data;
 }
@@ -100,15 +104,27 @@ Table.prototype.fillXYBody = function(data, func) {
     this.elements.y.forEach(function(yElt, index, array) {
         this.elements.x.forEach(function(xElt, index, array) {
             var value = model.getPersonByTaskSchedule(yElt, xElt);
-            this.addElement(target, "td", value);
+            var col = this.addElement(target, "td", value);
+            col.classList.add("col"+(index+1));
         }, this);
         target = target.nextSibling;
     }, this);
 }
 
-/*toto = new Table("totoid");
-toto.addHeader();
-toto.addFooter();
-toto.fillXY(model.getScheduleList(), model.getTasks(), model.getWorkingList());
-toto.addClass("table table-striped table-bordered table-responsive");
-toto.attach(document.body);*/
+Table.prototype.hideColumns = function(columns){
+    columns.forEach(function(colNum, index, array){
+        var elements = document.getElementsByClassName("col"+colNum);
+        for (var i = 0; i < elements.length; i++) {
+            elements[i].style.display = "none";
+            this.hidecols.push(elements[i]);
+        };
+    }, this);
+}
+
+Table.prototype.showColumns = function(){
+    for (var i = 0; i < this.hidecols.length; i++) {
+        this.hidecols[i].style.display = "table-cell";
+    };
+    this.hidecols = null;
+
+}
