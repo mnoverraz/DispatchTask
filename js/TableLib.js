@@ -111,6 +111,11 @@ Table.prototype.fillXYBody = function(data, func) {
     }, this);
 }
 
+/**
+* Visualy hides columns
+* @param Array columns the columns to hide. Starts at 0
+* @return undefined
+*/
 Table.prototype.hideColumns = function(columns){
     columns.forEach(function(colNum, index, array){
         var elements = document.getElementsByClassName("col"+colNum);
@@ -127,4 +132,21 @@ Table.prototype.showColumns = function(){
     };
     this.hidecols = null;
 
+}
+
+/**
+* Add a new column to the table with content inside
+* @param Array data the data content must be the same as the number of td to fill. The data can be Objects. The value inserted is Object.toString()
+* @return undefined
+*/
+Table.prototype.addColumn = function(data) {
+    var col = this.addElement(this.elements.header.lastChild, "th", data[0].toString());
+    col.classList.add("col" + this.elements.header.children[0].children.length);
+
+    var nbrTr = this.elements.body.children.length;
+    for (i = 0; i < nbrTr; i++) {
+        var tr = this.elements.body.children[i];
+        col = this.addElement(tr, "td", data[i + 1].toString());
+        col.classList.add("col" + tr.children.length);
+    }
 }
