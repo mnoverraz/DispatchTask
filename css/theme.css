@@ -36,3 +36,12 @@ body {
 	vertical-align: middle;
 	height: 100%;
 }
+
+.dragName{
+  padding: 3px;
+  cursor: grab;
+}
+
+.drag{
+  margin:5px;
+}
