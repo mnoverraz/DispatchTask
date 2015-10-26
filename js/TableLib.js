@@ -16,6 +16,10 @@ function Table(id) {
     this.hidecols = new Array();
 }
 
+Table.prototype.getTableHtmlElement = function(){
+    return document.getElementById(this.id);
+}
+
 Table.prototype.createTable = function(id) {
     var table = document.createElement("table");
     table.setAttribute("id", id);
@@ -47,7 +51,12 @@ Table.prototype.addRow = function(target) {
 Table.prototype.addElement = function(target, tagName, value) {
     var element = document.createElement(tagName);
     if (value != null || value != undefined) {
-        element.appendChild(document.createTextNode(value.toString()));
+        if(value instanceof HTMLElement){
+            element.appendChild(value);
+        }else{
+            element.appendChild(document.createTextNode(value.toString()));
+        }
+        
     }
     target.appendChild(element);
     return element;
@@ -84,7 +93,7 @@ Table.prototype.fillX = function(data) {
     var col = this.addElement(this.elements.header.lastChild, "th", null);
     col.classList.add("col0");
     data.forEach(function(value, index, array) {
-        col = this.addElement(this.elements.header.lastChild, "th", value.toString());
+        col = this.addElement(this.elements.header.lastChild, "th", value);
         col.classList.add("col"+(index+1));
     }, this);
     this.elements.x = data;
@@ -136,17 +145,17 @@ Table.prototype.showColumns = function(){
 
 /**
 * Add a new column to the table with content inside
-* @param Array data the data content must be the same as the number of td to fill. The data can be Objects. The value inserted is Object.toString()
+* @param Array data the data content must be the same as the number of td to fill. The data[x] can be Objects.
 * @return undefined
 */
 Table.prototype.addColumn = function(data) {
-    var col = this.addElement(this.elements.header.lastChild, "th", data[0].toString());
+    var col = this.addElement(this.elements.header.lastChild, "th", data[0]);
     col.classList.add("col" + this.elements.header.children[0].children.length);
 
     var nbrTr = this.elements.body.children.length;
     for (i = 0; i < nbrTr; i++) {
         var tr = this.elements.body.children[i];
-        col = this.addElement(tr, "td", data[i + 1].toString());
+        col = this.addElement(tr, "td", data[i + 1]);
         col.classList.add("col" + tr.children.length);
     }
 }

@@ -7,8 +7,9 @@ function createTable() {
 }
 
 function clearTable() {
-    if (typeof table != 'undefined') {
-        document.getElementById("tableTarget").removeChild(table);
+    if(typeof table != 'undefined') {
+        document.getElementById("tableTarget").removeChild(table.getTableHtmlElement());
+        table = null;
     }
 }
 
@@ -127,6 +128,40 @@ function dispatchTasks(constraints) {
     });
 
     return dispatch;
+}
+
+function createDragName(person){
+    var span = document.createElement("span");
+        span.classList.add("dragName");
+        span.classList.add("btn");
+        span.classList.add("btn-primary");
+    var dragNameDiv = document.createElement("div");
+        dragNameDiv.classList.add("drag");
+        dragNameDiv.setAttribute("draggable",true);
+        
+    if(person instanceof Person){
+        span.appendChild(document.createTextNode(person.toString()));
+        dragNameDiv.setAttribute("id",person.uniqid);
+    }else{
+        span.appendChild(document.createTextNode(config.i18n.random_drag));
+    }
+
+    dragNameDiv.appendChild(span);
+    activateDrag(dragNameDiv);
+
+    return dragNameDiv;
+}
+
+function addColumn(){
+
+    var data = new Array();
+    data.push(new Schedule(new Date(), new Date()));
+
+    for(i=0; i<model.getTasks().length; i++){
+        data.push(createDragName());
+    }
+
+    table.addColumn(data);
 }
 
 

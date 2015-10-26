@@ -23,18 +23,11 @@ body {
 }
 
 #drop_zone {
-	border: dashed 2px #000;
 	height: 200px;
 }
 
 .drop_zone-clear {
   height: 200px;
-}
-
-.dropMessage {
-	text-align: center;
-	vertical-align: middle;
-	height: 100%;
 }
 
 .dragName{
@@ -43,5 +36,5 @@ body {
 }
 
 .drag{
-  margin:5px;
+
 }

@@ -76,6 +76,11 @@ function activateDrag(node){
 	node.addEventListener('dragend', handleDragEnd, false);
 }
 
+// Setup the dnd listeners.
+var dropZone = document.getElementById('drop_zone');
+dropZone.addEventListener('dragover', handleDragOver, false);
+dropZone.addEventListener('drop', handleFileSelect, false);
+
 /*
 elt1 = document.createElement("div");
 temp = document.createElement("span");
