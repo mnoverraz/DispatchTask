@@ -164,6 +164,16 @@ function addColumn(){
     table.addColumn(data);
 }
 
+function newTasks(){
+    addColumn();
+    var tableInfo = table.createTableInfo();
+    document.getElementById("tableTarget").appendChild(tableInfo);
+
+    model.getPersons().forEach(function(person,index,array){
+        document.getElementById("dragNames").appendChild(createDragName(person));
+    });
+}
+
 
 
 function uniqid(prefix, more_entropy) {

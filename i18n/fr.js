@@ -6,11 +6,13 @@ config.i18n = {
 		newFile: 'Nouveau',
 		open: 'Ouvrir',
 		saveAs: 'Enregistrer',
+		edit: 'Édition',
+		new_tasks: 'Nouvelles tâches',
 		help: 'Aide',
 		apropos: 'À propos',
 		contact: 'Contact'
 	},
 	message: {
-		
+
 	}
 }

@@ -1,2 +1,2 @@
-//testData();
-//createTable();
+testData();
+createTable();

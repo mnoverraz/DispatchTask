@@ -10,10 +10,11 @@ function Table(id) {
         body: null,
         footer: null,
         x: null,
-        y: null
+        y: null,
     }
     this.table = this.createTable(this.id);
     this.hidecols = new Array();
+    this.tableInfo = null;
 }
 
 Table.prototype.getTableHtmlElement = function(){
@@ -158,4 +159,16 @@ Table.prototype.addColumn = function(data) {
         col = this.addElement(tr, "td", data[i + 1]);
         col.classList.add("col" + tr.children.length);
     }
+}
+
+Table.prototype.createTableInfo = function(){
+    var tableInfo = document.createElement("div");
+        tableInfo.setAttribute("id", "tableInfo");
+    var dragNameDiv = document.createElement("div");
+        dragNameDiv.setAttribute("id", "dragNames");
+    tableInfo.appendChild(dragNameDiv);
+
+    this.tableInfo = tableInfo;
+    return tableInfo;
+
 }
