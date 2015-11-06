@@ -45,6 +45,11 @@ db.prototype.addSchedule = function(begin, end, id){
 	return s;
 }
 
+db.prototype.addScheduleObject = function(schedule){
+	this.scheduleList.push(schedule);
+	return schedule;
+}
+
 db.prototype.getCours = function(){
 	return this.cours;
 }

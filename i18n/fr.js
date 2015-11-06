@@ -8,11 +8,13 @@ config.i18n = {
 		saveAs: 'Enregistrer',
 		edit: 'Édition',
 		new_tasks: 'Nouvelles tâches',
+		validate_newTasks: 'Valider les tâches',
 		help: 'Aide',
 		apropos: 'À propos',
 		contact: 'Contact'
 	},
 	message: {
+		tableInfo: 'Élèves'
 
 	}
 }

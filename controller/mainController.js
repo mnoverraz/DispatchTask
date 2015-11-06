@@ -65,7 +65,6 @@ function lastPersonForTask(task) {
 function whoDoneTheLess(task, persons) {
     var occupation = new Array();
     var ret = new Array();
-
     persons.forEach(function(person, index, array) {
         occupation.push(new Array(person, nbOccurance(person, task)));
     });
@@ -87,7 +86,6 @@ function whoDoneTheLess(task, persons) {
             ret.push(elt[0]);
         }
     });
-
     return ret;
 }
 
@@ -95,13 +93,12 @@ function dispatchTasks(constraints) {
     var dispatch = new Array();
     var availablePersons = model.getPersons();
     var availableTasks = model.getTasks();
-
-
-
-    //Add every valid conditions and erase the person in availablePersons
-    if (typeof contraints !== "undefined") {
+    var schedule = new Schedule(new Date(), new Date());
+    //Add every valid constraint and erase the person in availablePersons
+    if (typeof constraints !== "undefined") {
         constraints.forEach(function(constraint, index, array) {
-            if (constraint[0] instanceof Task && constraint[1] instanceof Person && constraint[2] instanceof Schedule) {
+            if (constraint[0] instanceof Task && constraint[1] instanceof Person) {
+                constraint.push(schedule);
                 dispatch.push(constraint);
                 var indexPerson = availablePersons.indexOf(constraint[1]);
                 var indexTask = availableTasks.indexOf(constraint[0]);
@@ -123,7 +120,7 @@ function dispatchTasks(constraints) {
         var designatedPerson = eligiblePersons[Math.floor(Math.random() * eligiblePersons.length)];
         var indexPerson = availablePersons.indexOf(designatedPerson);
 
-        dispatch.push(new Array(task, designatedPerson, new Schedule(new Date(), new Date())));
+        dispatch.push(new Array(task, designatedPerson, schedule));
         availablePersons.splice(indexPerson, 1);
     });
 
@@ -140,8 +137,8 @@ function createDragName(person){
         dragNameDiv.setAttribute("draggable",true);
         
     if(person instanceof Person){
+        span.setAttribute("id",person.uniqid);
         span.appendChild(document.createTextNode(person.toString()));
-        dragNameDiv.setAttribute("id",person.uniqid);
     }else{
         span.appendChild(document.createTextNode(config.i18n.random_drag));
     }
@@ -156,9 +153,12 @@ function addColumn(){
 
     var data = new Array();
     data.push(new Schedule(new Date(), new Date()));
-
-    for(i=0; i<model.getTasks().length; i++){
-        data.push(createDragName());
+    var tasks = model.getTasks()
+    for(i=0; i<tasks.length; i++){
+        dragName = createDragName();
+        dragName.setAttribute("id",tasks[i].uniqid);
+        dragName.classList.add("constraint");
+        data.push(dragName);
     }
 
     table.addColumn(data);
@@ -166,12 +166,48 @@ function addColumn(){
 
 function newTasks(){
     addColumn();
-    var tableInfo = table.createTableInfo();
-    document.getElementById("tableTarget").appendChild(tableInfo);
+    if(document.getElementById("tableInfo") == null){
+        var tableInfo = table.createTableInfo();
+        document.getElementById("tableTarget").appendChild(tableInfo);
+    }else{
+        table.updateDragNameDiv();
+    }
 
+    var dragNamesDiv = document.getElementById("dragNames");
     model.getPersons().forEach(function(person,index,array){
-        document.getElementById("dragNames").appendChild(createDragName(person));
+        dragNamesDiv.appendChild(createDragName(person));
     });
+}
+
+/*
+* Create an Array of constraints
+* @return {Array} [0]=>{Task}, [1]=>{Person}
+*/
+function makeConstraints(){
+    var constraintDivs = document.querySelectorAll('.constraint');
+    var constraints = null;
+    for (var div of constraintDivs) {
+        //return true if the string contains "person"
+        if(div.firstChild.id.indexOf("person") > -1){
+            var task = model.getTaskByUniqId(div.id);
+            var person = model.getPersonByUniqId(div.firstChild.id);
+            if(constraints == null){constraints = new Array()}
+            constraints.push(new Array(task, person));
+        }
+    }
+    return constraints;
+}
+
+function makeDispatch(){
+    constraints = makeConstraints();
+    var dispatch = dispatchTasks(constraints);
+    for(var elt of dispatch){
+        model.addTaskWork(elt[0],elt[1],elt[2]);
+    }
+    model.addScheduleObject(elt[2]);
+    clearTable();
+    createTable();
+    return true;
 }
 
 

@@ -59,6 +59,7 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><script>document.write(config.i18n.menu.edit)</script><span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="#" onclick="newTasks();"><script>document.write(config.i18n.menu.new_tasks)</script></a></li>
+                <li><a href="#" onclick="makeDispatch();"><script>document.write(config.i18n.menu.validate_newTasks)</script></a></li>
               </ul>
             </li>
             <li class="dropdown">
@@ -74,32 +75,26 @@
     </nav>
 
     <div class="container theme-showcase" role="main" id="drop_zone">
-      
-      <div id="tableTarget">
-      </div>
-      
-      <script type="text/javascript" src="js/TableLib.js"></script>
-      <script type="text/javascript" src="model/testData.js"></script>
-      <script type="text/javascript" src="model/Db.js"></script>
-      <script type="text/javascript" src="model/Person.js"></script>
-      <script type="text/javascript" src="model/Task.js"></script>
-      <script type="text/javascript" src="model/Cours.js"></script>
-      <script type="text/javascript" src="model/Classe.js"></script>
-      <script type="text/javascript" src="model/Schedule.js"></script>
-      <script type="text/javascript" src="controller/mainController.js"></script>
-      <script type="text/javascript" src="controller/saveFileController.js"></script>
-      <script type="text/javascript" src="controller/importController.js"></script>
-      <script type="text/javascript" src="controller/dragNdrop.js"></script>
-      <script type="text/javascript" src="js/tables.js"></script>
-      
-
-
+      <div id="tableTarget"></div>
     </div> <!-- /container -->
-
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/javascript" src="js/TableLib.js"></script>
+    <script type="text/javascript" src="model/testData.js"></script>
+    <script type="text/javascript" src="model/Db.js"></script>
+    <script type="text/javascript" src="model/Person.js"></script>
+    <script type="text/javascript" src="model/Task.js"></script>
+    <script type="text/javascript" src="model/Cours.js"></script>
+    <script type="text/javascript" src="model/Classe.js"></script>
+    <script type="text/javascript" src="model/Schedule.js"></script>
+    <script type="text/javascript" src="controller/mainController.js"></script>
+    <script type="text/javascript" src="controller/saveFileController.js"></script>
+    <script type="text/javascript" src="controller/importController.js"></script>
+    <script type="text/javascript" src="controller/dragNdrop.js"></script>
+    <script type="text/javascript" src="js/tables.js"></script>
+
     <script src="lib/jquery.min.js"></script>
     <script src="lib/bootstrap/js/bootstrap.min.js"></script>
     <script src="lib/bootstrap/js/docs.min.js"></script>

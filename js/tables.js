@@ -1,2 +1,4 @@
-testData();
-createTable();
+if(config.profile == 'dev'){
+	testData();
+	createTable();
+}

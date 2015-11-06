@@ -13,7 +13,6 @@ function testData(){
 	t1=model.addTask("Poussière");
 	t2=model.addTask("Aspirateur");
 	t3=model.addTask("Cuisine");
-	t4=model.addTask("Toilettes");
 
 	s1=model.addSchedule(new Date(2015, 05, 10, 10, 00), new Date(2015, 05, 10, 11, 00));
 	s2=model.addSchedule(new Date(2015, 05, 17, 10, 00), new Date(2015, 05, 17, 11, 00));
@@ -49,9 +48,5 @@ function testData(){
 	model.addTaskWork(t3,p3,s1);
 	model.addTaskWork(t3,p2,s2);
 	model.addTaskWork(t3,p1,s3);
-
-	model.addTaskWork(t4,p1,s1);
-	model.addTaskWork(t4,p3,s2);
-	model.addTaskWork(t4,p2,s3);
 	
 }

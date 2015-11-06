@@ -161,14 +161,40 @@ Table.prototype.addColumn = function(data) {
     }
 }
 
-Table.prototype.createTableInfo = function(){
-    var tableInfo = document.createElement("div");
-        tableInfo.setAttribute("id", "tableInfo");
+Table.prototype.createDragNameDiv = function(){
     var dragNameDiv = document.createElement("div");
         dragNameDiv.setAttribute("id", "dragNames");
-    tableInfo.appendChild(dragNameDiv);
+    return dragNameDiv;
+}
+
+Table.prototype.createTableInfo = function(){
+    var title = document.createElement("h3");
+        title.innerHTML = config.i18n.message.tableInfo;
+    var tableInfo = document.createElement("div");
+        tableInfo.setAttribute("id", "tableInfo");
+    var validateButton = document.createElement("button");
+        validateButton.setAttribute("name", "makeDispatchValidation");
+        validateButton.classList.add("btn","btn-default");
+        validateButton.innerHTML = config.i18n.menu.validate_newTasks;
+        validateButton.addEventListener('click', function(){
+            makeDispatch();
+            tableInfo.style.display='none';
+        }, false);
+
+    tableInfo.appendChild(title);
+    tableInfo.appendChild(this.createDragNameDiv());
+    tableInfo.appendChild(document.createElement("hr"));
+    tableInfo.appendChild(validateButton);
 
     this.tableInfo = tableInfo;
-    return tableInfo;
 
+    return tableInfo;
+}
+
+Table.prototype.updateDragNameDiv = function(){
+    var tableInfo = document.getElementById("tableInfo");
+    var newDragNameDiv = this.createDragNameDiv();
+    var oldDragNameDiv = document.getElementById("dragNames");  
+    tableInfo.replaceChild(newDragNameDiv, oldDragNameDiv);
+    tableInfo.style.display='initial';
 }
