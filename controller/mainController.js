@@ -95,7 +95,7 @@ function dispatchTasks(constraints) {
     var availableTasks = model.getTasks();
     var schedule = new Schedule(new Date(), new Date());
     //Add every valid constraint and erase the person in availablePersons
-    if (typeof constraints !== "undefined") {
+    if (typeof constraints !== "undefined" && constraints != null) {
         constraints.forEach(function(constraint, index, array) {
             if (constraint[0] instanceof Task && constraint[1] instanceof Person) {
                 constraint.push(schedule);
@@ -205,12 +205,21 @@ function makeDispatch(){
         model.addTaskWork(elt[0],elt[1],elt[2]);
     }
     model.addScheduleObject(elt[2]);
-    clearTable();
-    createTable();
+    reloadTable();
     return true;
 }
 
+function addTask(task){
+    model.addTask(task);
+    if(document.getElementById("tableInfo") != null){
+        reloadTable();
+    }
+}
 
+function reloadTable(){
+    clearTable();
+    return createTable();
+}
 
 function uniqid(prefix, more_entropy) {
     //  discuss at: http://phpjs.org/functions/uniqid/

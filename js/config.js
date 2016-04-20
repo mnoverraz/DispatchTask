@@ -1,5 +1,5 @@
 var config = {
-	profile: 'prod',
+	profile: 'dev',
 	appName: 'Dispatch Task',
 	author: {
 		name: 'Mathieu Noverraz',
